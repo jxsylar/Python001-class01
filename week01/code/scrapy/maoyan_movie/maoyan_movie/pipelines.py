@@ -14,7 +14,6 @@ class MaoyanMoviePipeline:
         filename = "maoyan_movie_scrapy.csv"
         f = open(filename, 'wb')
         self.exporter = CsvItemExporter(f)
-        # self.exporter.start_exporting()
 
     def process_item(self, item, spider):
         if type(item) == MaoyanMovieItem:
