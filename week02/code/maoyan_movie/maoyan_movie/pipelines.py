@@ -4,7 +4,6 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-import json
 
 import pymysql
 
@@ -37,11 +36,11 @@ class MysqlPipeline():
         self.db.close()
 
     def process_item(self, item, spider):
-        sql_fmt = """INSERT INTO `{}`(`movie_id`, `name`, `score`, `url`, `poster`, `info`) VALUES ('{}', '{}', '{}', '{}', '{}', '{}');"""
-        sql = sql_fmt.format(self.table,
-                             item['movie_id'], item['name'],
-                             item['score'], item['url'],
-                             item['poster'], json.dumps(item['info'], ensure_ascii=False),
+        sql_fmt = ("""INSERT INTO `{}`(`movie_id`, `name_cn`, `name_en`, `type`, `show_time`, `score`, `avatar`) 
+                    VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}');""")
+        sql = sql_fmt.format(self.table, item['movie_id'], item['name_cn'],
+                             item['name_en'], item['type'], item['show_time'],
+                             item['score'], item['avatar'],
                              )
         self.cursor.execute(sql)
         self.db.commit()
