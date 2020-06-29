@@ -11,7 +11,7 @@ from scrapy.exporters import CsvItemExporter
 
 class MaoyanMoviePipeline:
     def open_spider(self, spider):
-        filename = "maoyan_movie_scrapy.csv"
+        filename = "maoyan_movie_scrapy_m.csv"
         f = open(filename, 'wb')
         self.exporter = CsvItemExporter(f)
 

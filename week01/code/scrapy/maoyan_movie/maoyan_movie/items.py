@@ -10,8 +10,9 @@ from scrapy import Field, Item
 
 class MaoyanMovieItem(Item):
     _id = Field()
-    name = Field()
+    name_cn = Field()
+    name_en = Field()
+    type = Field()
+    show_time = Field()
     score = Field()
-    url = Field()
-    poster = Field()
-    info = Field()
+    avatar = Field()

@@ -29,4 +29,8 @@
 - headers 把 cookies 也要加上, cookies 的有效期还是比较长的, 短时间内使用是没问题的
 - 控制一下请求频率, 如果出现验证码页面, 短期内可以在日志文件里将验证的 URL 复制到浏览器完成验证
 
-2. scrapy item pipeline 里, [自带有序列化输出文件的类](https://docs.scrapy.org/en/latest/topics/feed-exports.html), 支持 json, jsonline, csv, xml 这 4 中格式, 在 pipeline 里可以直接使用. 当然, 完全可以使用自己实现的方式进行数据保存.
+2. 爬取手机端请求会比较容易
+
+3. scrapy item pipeline 里, [自带有序列化输出文件的类](https://docs.scrapy.org/en/latest/topics/feed-exports.html), 支持 json, jsonline, csv, xml 这 4 中格式, 在 pipeline 里可以直接使用. 当然, 完全可以使用自己实现的方式进行数据保存.
+
+4. 运行 scrapy: `scrapy crawl crawl_maoyan_movie -s CLOSESPIDER_ITEMCOUNT=200`
