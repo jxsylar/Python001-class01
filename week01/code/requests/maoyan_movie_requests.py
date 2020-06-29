@@ -54,10 +54,8 @@ def parse_movie(html):
         div = a.css("div.classic-movie")
         avatar = div.css("div.avatar img::attr(src)").get()
         name_cn = div.css("div.movie-info div.title::text").get()
-        name_en = div.css("div.movie-info div.title::text").get()
+        name_en = div.css("div.movie-info div.english-title::text").get()
         type_ = div.css("div.movie-info div.actors::text").get()
-        if type_:
-            type_ = type_.strip().split(',')
         show_time = div.css("div.movie-info div.show-info::text").get()
         score = div.css("div.movie-score div.score span.grade::text").get()
         no_score = div.css("div.movie-score div.no-score::text").get()
