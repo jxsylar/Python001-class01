@@ -40,33 +40,38 @@ class MaoyanMovieSpider(scrapy.Spider):
             'optimus_code': '10'
         }
         f_url = furl(base_url).add(params)
+        # 添加错误回调函数
         yield scrapy.Request(f_url.url, meta={'f_url': f_url}, headers=self.headers, errback=self.errback)
 
     def parse(self, response):
         f_url = response.meta['f_url']
-        if response.css("body > a div.classic-movie"):
-            for a in response.css("body > a"):
-                movie_id = a.re_first(r"\d+")
-                div = a.css("div.classic-movie")
-                avatar = div.css("div.avatar img::attr(src)").get()
-                name_cn = div.css("div.movie-info div.title::text").get()
-                name_en = div.css("div.movie-info div.english-title::text").get()
-                type_ = div.css("div.movie-info div.actors::text").get()
-                show_time = div.css("div.movie-info div.show-info::text").get()
-                score = div.css("div.movie-score div.score span.grade::text").get()
-                no_score = div.css("div.movie-score div.no-score::text").get()
-                item = MaoyanMovieItem()
-                item['movie_id'] = movie_id
-                item['name_cn'] = name_cn
-                item['name_en'] = name_en
-                item['type'] = type_
-                item['show_time'] = show_time
-                item['score'] = score or no_score
-                item['avatar'] = avatar
-                yield item
+        try:
+            if response.css("body > a div.classic-movie"):
+                for a in response.css("body > a"):
+                    movie_id = a.re_first(r"\d+")
+                    div = a.css("div.classic-movie")
+                    avatar = div.css("div.avatar img::attr(src)").get()
+                    name_cn = div.css("div.movie-info div.title::text").get()
+                    name_en = div.css("div.movie-info div.english-title::text").get()
+                    type_ = div.css("div.movie-info div.actors::text").get()
+                    show_time = div.css("div.movie-info div.show-info::text").get()
+                    score = div.css("div.movie-score div.score span.grade::text").get()
+                    no_score = div.css("div.movie-score div.no-score::text").get()
+                    item = MaoyanMovieItem()
+                    item['movie_id'] = movie_id
+                    item['name_cn'] = name_cn
+                    item['name_en'] = name_en
+                    item['type'] = type_
+                    item['show_time'] = show_time
+                    item['score'] = score or no_score
+                    item['avatar'] = avatar
+                    yield item
 
-            f_url.args['offset'] += f_url.args['limit']
-            yield scrapy.Request(f_url.url, meta={'f_url': f_url}, headers=self.headers, errback=self.errback)
+                f_url.args['offset'] += f_url.args['limit']
+                yield scrapy.Request(f_url.url, meta={'f_url': f_url}, headers=self.headers, errback=self.errback)
+        except Exception as e:
+            self.logger.error(e)
+
 
     def errback(self, failure: Failure):
         """
