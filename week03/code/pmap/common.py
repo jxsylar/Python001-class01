@@ -38,10 +38,7 @@ def get_ip(hosts):
 
 def get_port(ports):
     delimiter = '-' if '-' in ports else ',' if ',' in ports else None
-    if delimiter:
-        tmp = [i.strip() for i in ports.split(delimiter) if i and i.strip()]
-    else:
-        tmp = [ports]
+    tmp = [i.strip() for i in ports.split(delimiter) if i and i.strip()] if delimiter else [ports]
     if not all(i.isdigit() for i in tmp):
         raise ValueError(f"Port must be type of int")
     tmp = [int(i) for i in tmp]
