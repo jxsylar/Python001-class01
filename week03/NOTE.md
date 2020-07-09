@@ -1,1 +1,3 @@
-学习笔记
+# 作业1
+
+![pmap](images/pmap.gif)
