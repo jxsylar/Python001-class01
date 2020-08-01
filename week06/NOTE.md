@@ -103,9 +103,10 @@ $ python -c "import django; print(django.get_version())"
 
 ### [Django values_list vs values](https://stackoverflow.com/questions/37205793/django-values-list-vs-values)
 
-<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/267146/1596256278220-d904b936-6e5d-4b20-91b8-1972f44cb70d.png#align=left&display=inline&height=315&margin=%5Bobject%20Object%5D&name=image.png&originHeight=462&originWidth=971&size=62918&status=done&style=shadow&width=663)<br />
-<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/267146/1596256287473-0506ba49-f568-45f0-ac7b-0a735295b37b.png#align=left&display=inline&height=173&margin=%5Bobject%20Object%5D&name=image.png&originHeight=344&originWidth=1866&size=99215&status=done&style=shadow&width=941)<br />
-<br />
+![](./pic/1.png)
+
+
+![](./pic/2.png)
 
 ## 根据已有数据表反向生成 ORM
 
