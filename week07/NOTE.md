@@ -22,7 +22,7 @@
 - type 的父类是 object, object 没有父类, type 和 object 不是继承关系
 - object 是 type 的实例, 而 type 是 object 的子类, 这种关系很“神奇”, 无法使用Python代码表述
 - type 和 object 都是由 type 创建
-- 除了 type, 标准库中还有一些别的元类, 例如 abc.ABCMeta 和 Enum
+- 除了 type, 标准库中还有一些别的元类, 例如 `abc.ABCMeta` 和 `Enum`
 
 ![](pic/type_object.jpg)
 > 上图摘自《流畅的python》
